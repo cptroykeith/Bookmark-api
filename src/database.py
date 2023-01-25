@@ -17,7 +17,7 @@ class User(db.Model):
     password = db.Column(db.Text(), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, onupdate=datetime.now())
-    bookmarks = db.relationship('Bookmarks', backref="user")
+    bookmarks = db.relationship('Bookmark', backref="user")
 
 
 def __repr__(self) -> str:
@@ -49,7 +49,7 @@ class Bookmark(db.Model):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.short_url=self.generate_short_characters()
+        self.short_url = self.generate_short_characters()
 
     def __repr__(self) -> str:
         return 'Bookmark>>> {self.url}'
