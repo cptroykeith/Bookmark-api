@@ -9,7 +9,7 @@ from src.database import User, db
 
 auth = Blueprint("auth", __name__, url_prefix="/api/v1/auth")
 
-
+#register a user
 @auth.post('/register')
 @swag_from('./docs/auth/register.yaml')
 def register():
@@ -49,7 +49,7 @@ def register():
 
     }), HTTP_201_CREATED
 
-
+#login a user
 @auth.post('/login')
 @swag_from('./docs/auth/login.yaml')
 def login():
@@ -60,7 +60,7 @@ def login():
 
     if user:
         is_pass_correct = check_password_hash(user.password, password)
-
+#tokens
         if is_pass_correct:
             refresh = create_refresh_token(identity=user.id)
             access = create_access_token(identity=user.id)
