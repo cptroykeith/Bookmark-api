@@ -1,3 +1,4 @@
+from src.constants.http_status_codes import HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
 from flask import Flask
 import os
 from src.auth import auth
