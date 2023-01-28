@@ -148,10 +148,9 @@ def editbookmark(id):
         'updated_at': bookmark.updated_at,
     }), HTTP_200_OK
 
-
+#stats
 @bookmarks.get("/stats")
 @jwt_required()
-@swag_from("./docs/bookmarks/stats.yaml")
 def get_stats():
     current_user = get_jwt_identity()
 

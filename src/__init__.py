@@ -40,5 +40,17 @@ def create_app(test_config=None):
             db.session.commit()
             return redirect(bookmark.url)
 
+    #handling errors
+    @app.errorhandler(HTTP_404_NOT_FOUND)
+    def handle_404(e):
+        return jsonify({'error': 'Not found'}), HTTP_404_NOT_FOUND
+
+    @app.errorhandler(HTTP_500_INTERNAL_SERVER_ERROR)
+    def handle_500(e):
+        return jsonify({'error': 'Something went wrong, we are working on it'}), HTTP_500_INTERNAL_SERVER_ERROR
+
+    return app
+
+
 
     return app
