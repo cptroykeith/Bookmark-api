@@ -150,6 +150,7 @@ def editbookmark(id):
 
 #stats
 @bookmarks.get("/stats")
+@swag_from("./docs/bookmarks/stats.yaml")
 @jwt_required()
 def get_stats():
     current_user = get_jwt_identity()
