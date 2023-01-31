@@ -26,7 +26,7 @@ def create_app(test_config=None):
                 'title': "Bookmarks API",
                 'uiversion': 3
             }
-            )
+        )
     
     else:
         app.config.from_mapping(test_config)
@@ -35,13 +35,12 @@ def create_app(test_config=None):
     db.init_app(app)
 
     JWTManager(app)
-
     app.register_blueprint(auth)
     app.register_blueprint(bookmarks)
 
     Swagger(app, config=swagger_config, template=template)
 
-    @app.get('/<short_u rl>')
+    @app.get('/<short_url>')
     @swag_from('./docs/short_url.yaml')
     def redirect_to_url(short_url):
         bookmark = Bookmark.query.filter_by(short_url=short_url).first_or_404()
